@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://api.github.com/users/headsink/repos', true);
+xhr.onreadystatechange = function() {
+  if (xhr.readyState == 4) {
+    var repos = JSON.parse(xhr.responseText);
+    var list = document.createElement('ul');
+    for (var i = 0; i < repos.length; i++) {
+      var item = document.createElement('li');
+      item.innerHTML = repos[i].name;
+      list.appendChild(item);
+    }
+    document.body.appendChild(list);
+  }
+};
+xhr.send();
+});
+        </script>
+
+</body>
+</html>
